@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="chat_style.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+    function reqListener() {
+      console.log(this.responseText);
+    }
+
+    function responseHandler() {
+      data = JSON.parse(this.response);
+      document.getElementById("responseDiv").innerHTML = data.message;
+    }
+
+    function sendHandler() {
+      console.log('sending data...');
+      var myajaxcall = new XMLHttpRequest();
+      var chatURL = "api/message";
+      var cactus_id = 0;
+      var user_id = "brittany";
+      var message = document.getElementById("message").value;
+
+      myajaxcall.onload = responseHandler;
+      myajaxcall.open("post", chatURL, true);
+      myajaxcall.send('cactus_id=' + cactus_id + '&user_id=' + user_id + '&message=' + message);
+      console.log('data sent');
+      return false;
+    }
+  </script>
+  <title>Cactus Concierge Chat</title>
+</head>
+
+<body>
+  <h1>Cactus Chat!</h1>
+  <form id="signInForm">
+    <input id="userName" type="text">
+
+    <input id="signInButt" name="signIn" type="submit" value="Sign in">
+
+    <span id="signInName">User name</span>
+
+  </form>
+  <div id="responseDiv"></div>
+  <form onSubmit="return false" id="messageForm">
+    <input id="message" type="text">
+    <button id="send" onclick="sendHandler()">Send</button>
+  </form>
+</body>
+
+</html>
+
