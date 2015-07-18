@@ -4,7 +4,8 @@ var morgan = require('morgan'); // used to see requests
 var bodyParser = require('body-parser');
 var apiRouter = express.Router();
 var port = process.env.PORT || 8080;
-
+var chatter = require('../tucson_fact_chat');
+var chatHistory = {};
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -23,8 +24,17 @@ apiRouter.use(function (req, res, next) {
   next();
 });
 
-apiRouter.get('/', function (req, res) {
-  res.json({message: 'Welcome to the API'});
+apiRouter.post('/message', function (req, res) {
+  var curr = {};
+  curr.cactus_id = req.body.cactus_id;
+  curr.user_id = req.body.user_id;
+  curr.message = req.body.message;
+
+  if (!chatHistory[curr.user_id]) {
+    chatHistory[curr.user_id] = {};
+  }
+
+  res.json({message: chatter.respondTo(curr.message, chatHistory[curr.user_id])});
 });
 
 app.use('/api', apiRouter);
