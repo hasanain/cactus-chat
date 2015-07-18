@@ -8,25 +8,23 @@
       console.log(this.responseText);
     }
 
-    function responseHandler(x) {
-      console.log(x);
-      document.getElementById("responseDiv").innerHTML = x;
+    function responseHandler() {
+      data = JSON.parse(this.response);
+      document.getElementById("responseDiv").innerHTML = data.message;
     }
 
     function sendHandler() {
-
       console.log('sending data...');
-      //var myajaxcall = new XMLHttpRequest();
-      var chatURL = "localhost:8080/api/message";
+      var myajaxcall = new XMLHttpRequest();
+      var chatURL = "api/message";
       var cactus_id = 0;
       var user_id = "brittany";
       var message = document.getElementById("message").value;
 
-      // myajaxcall.onload = responseHandler;
-      // myajaxcall.open("post", chatURL, true);
-      // myajaxcall.send('cactus_id=' + cactus_id + '&user_id=' + user_id + '&message=' + message);
-      // console.log('data sent');
-      $.post(chatURL, cactus_id, responseHandler);
+      myajaxcall.onload = responseHandler;
+      myajaxcall.open("post", chatURL, true);
+      myajaxcall.send('cactus_id=' + cactus_id + '&user_id=' + user_id + '&message=' + message);
+      console.log('data sent');
       return false;
     }
   </script>
