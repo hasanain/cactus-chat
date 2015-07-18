@@ -1,0 +1,21 @@
+{
+  "name": "cactus-chat",
+  "version": "0.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hjamal/cactus-chat"
+  },
+  "keywords": [
+    "hackathon",
+    "conciere"
+  ],
+  "author": "Social Cacti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hjamal/cactus-chat/issues"
+  },
+	"dependencies": {
+    "express": "^4.13.1"
+	}
+}
