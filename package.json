@@ -1,7 +1,7 @@
 {
   "name": "cactus-chat",
   "version": "0.0.0",
-  "main": "server/server.js",
+  "main": "server/app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/hjamal/cactus-chat"
@@ -16,6 +16,8 @@
     "url": "https://github.com/hjamal/cactus-chat/issues"
   },
   "dependencies": {
-    "express": "^4.13.1"
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "morgan": "^1.6.1"
   }
 }
