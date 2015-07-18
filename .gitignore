@@ -1,0 +1,9 @@
+node_modules
+public
+.tmp
+tmp-*
+.idea
+client/bower_components
+dist
+.DS_Store
+data/*
